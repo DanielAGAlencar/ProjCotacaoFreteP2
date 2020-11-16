@@ -48,7 +48,7 @@
             @Html.DisplayNameFor(model => model.embalagem.descricao)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.empresa.cnpj)
+            @Html.DisplayNameFor(model => model.empresa.nome_fantasia)
         </th>
         <th></th>
     </tr>
@@ -92,7 +92,7 @@
             @Html.DisplayFor(modelItem => item.embalagem.descricao)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.empresa.cnpj)
+            @Html.DisplayFor(modelItem => item.empresa.nome_fantasia)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

@@ -39,8 +39,8 @@ namespace ProjCotacaoFreteP2.Controllers
         // GET: pedidoes/Create
         public ActionResult Create()
         {
-            ViewBag.fkempresa = new SelectList(db.embalagem, "Id", "descricao");
-            ViewBag.fkempresa = new SelectList(db.empresa, "Id", "cnpj");
+            ViewBag.fkembalagem = new SelectList(db.embalagem, "Id", "descricao");
+            ViewBag.fkempresa = new SelectList(db.empresa, "Id", "nome_fantasia");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace ProjCotacaoFreteP2.Controllers
             }
 
             //ViewBag.fkempresa = new SelectList(db.embalagem, "Id", "descricao", pedido.fkempresa);
-            //ViewBag.fkempresa = new SelectList(db.empresa, "Id", "cnpj", pedido.fkempresa);
+            ViewBag.fkempresa = new SelectList(db.empresa, "Id", "nome_fantasia", pedido.fkempresa);
             //return View(pedido);
             return Json(new { Resultado = pedido.Id }, JsonRequestBehavior.AllowGet);
         }
@@ -76,8 +76,8 @@ namespace ProjCotacaoFreteP2.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.fkempresa = new SelectList(db.embalagem, "Id", "descricao", pedido.fkempresa);
-            ViewBag.fkempresa = new SelectList(db.empresa, "Id", "cnpj", pedido.fkempresa);
+            ViewBag.fkembalagem = new SelectList(db.embalagem, "Id", "descricao", pedido.fkempresa);
+            ViewBag.fkempresa = new SelectList(db.empresa, "Id", "nome_fantasia", pedido.fkempresa);
             return View(pedido);
         }
 
@@ -94,8 +94,8 @@ namespace ProjCotacaoFreteP2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.fkempresa = new SelectList(db.embalagem, "Id", "descricao", pedido.fkempresa);
-            ViewBag.fkempresa = new SelectList(db.empresa, "Id", "cnpj", pedido.fkempresa);
+            ViewBag.fkembalagem = new SelectList(db.embalagem, "Id", "descricao", pedido.fkempresa);
+            ViewBag.fkempresa = new SelectList(db.empresa, "Id", "nome_fantasia", pedido.fkempresa);
             return View(pedido);
         }
 
