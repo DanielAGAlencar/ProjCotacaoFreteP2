@@ -1,0 +1,50 @@
+﻿@model ProjCotacaoFreteP2.embalagem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>embalagem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.altura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.altura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.largura)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.largura)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.comprimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.comprimento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

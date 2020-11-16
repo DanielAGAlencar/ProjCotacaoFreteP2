@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DadosModelStoreContainer" CdmEntityContainer="DadosEntities">
+    <EntitySetMapping Name="cotacao">
+      <EntityTypeMapping TypeName="DadosModel.cotacao">
+        <MappingFragment StoreEntitySet="cotacao">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="fkpedido" ColumnName="fkpedido" />
+          <ScalarProperty Name="fktransportadora" ColumnName="fktransportadora" />
+          <ScalarProperty Name="dias_entrega" ColumnName="dias_entrega" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="embalagem">
+      <EntityTypeMapping TypeName="DadosModel.embalagem">
+        <MappingFragment StoreEntitySet="embalagem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="altura" ColumnName="altura" />
+          <ScalarProperty Name="largura" ColumnName="largura" />
+          <ScalarProperty Name="comprimento" ColumnName="comprimento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="empresa">
+      <EntityTypeMapping TypeName="DadosModel.empresa">
+        <MappingFragment StoreEntitySet="empresa">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+          <ScalarProperty Name="razao" ColumnName="razao" />
+          <ScalarProperty Name="nome_fantasia" ColumnName="nome_fantasia" />
+          <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="uf" ColumnName="uf" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="complemento" ColumnName="complemento" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="frete">
+      <EntityTypeMapping TypeName="DadosModel.frete">
+        <MappingFragment StoreEntitySet="frete">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="fkcotacao" ColumnName="fkcotacao" />
+          <ScalarProperty Name="codigo_rastreio" ColumnName="codigo_rastreio" />
+          <ScalarProperty Name="data_postagem" ColumnName="data_postagem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pedido">
+      <EntityTypeMapping TypeName="DadosModel.pedido">
+        <MappingFragment StoreEntitySet="pedido">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="nome_cliente" ColumnName="nome_cliente" />
+          <ScalarProperty Name="cpf_cnpj" ColumnName="cpf_cnpj" />
+          <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="uf" ColumnName="uf" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="complemento" ColumnName="complemento" />
+          <ScalarProperty Name="peso" ColumnName="peso" />
+          <ScalarProperty Name="valor" ColumnName="valor" />
+          <ScalarProperty Name="fkembalagem" ColumnName="fkembalagem" />
+          <ScalarProperty Name="fkempresa" ColumnName="fkempresa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transportadora">
+      <EntityTypeMapping TypeName="DadosModel.transportadora">
+        <MappingFragment StoreEntitySet="transportadora">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+          <ScalarProperty Name="razao" ColumnName="razao" />
+          <ScalarProperty Name="nome_fantasia" ColumnName="nome_fantasia" />
+          <ScalarProperty Name="logradouro" ColumnName="logradouro" />
+          <ScalarProperty Name="cidade" ColumnName="cidade" />
+          <ScalarProperty Name="uf" ColumnName="uf" />
+          <ScalarProperty Name="numero" ColumnName="numero" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="complemento" ColumnName="complemento" />
+          <ScalarProperty Name="telefone" ColumnName="telefone" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="site" ColumnName="site" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

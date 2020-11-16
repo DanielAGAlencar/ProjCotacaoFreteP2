@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DadosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cotacao">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fkpedido" Type="Int32" Nullable="false" />
+    <Property Name="fktransportadora" Type="Int32" Nullable="false" />
+    <Property Name="dias_entrega" Type="Int32" Nullable="false" />
+    <Property Name="valor" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="frete" Relationship="Self.FK_Cotacao_Frete" FromRole="cotacao" ToRole="frete" />
+    <NavigationProperty Name="pedido" Relationship="Self.FK_Pedido_Cotacao" FromRole="cotacao" ToRole="pedido" />
+    <NavigationProperty Name="transportadora" Relationship="Self.FK_Transportadora_Cotacao" FromRole="cotacao" ToRole="transportadora" />
+  </EntityType>
+  <EntityType Name="embalagem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descricao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="altura" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="largura" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="comprimento" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="pedido" Relationship="Self.FK_Embalagem_Pedido" FromRole="embalagem" ToRole="pedido" />
+  </EntityType>
+  <EntityType Name="empresa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cnpj" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="razao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nome_fantasia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="logradouro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cep" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="complemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="pedido" Relationship="Self.FK_Empresa_Pedido" FromRole="empresa" ToRole="pedido" />
+  </EntityType>
+  <EntityType Name="frete">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fkcotacao" Type="Int32" Nullable="false" />
+    <Property Name="codigo_rastreio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data_postagem" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="cotacao" Relationship="Self.FK_Cotacao_Frete" FromRole="frete" ToRole="cotacao" />
+  </EntityType>
+  <EntityType Name="pedido">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nome_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cpf_cnpj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="logradouro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cep" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="complemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="peso" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="valor" Type="String" MaxLength="7" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fkembalagem" Type="Int32" Nullable="false" />
+    <Property Name="fkempresa" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cotacao" Relationship="Self.FK_Pedido_Cotacao" FromRole="pedido" ToRole="cotacao" />
+    <NavigationProperty Name="embalagem" Relationship="Self.FK_Embalagem_Pedido" FromRole="pedido" ToRole="embalagem" />
+    <NavigationProperty Name="empresa" Relationship="Self.FK_Empresa_Pedido" FromRole="pedido" ToRole="empresa" />
+  </EntityType>
+  <EntityType Name="transportadora">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="cnpj" Type="String" MaxLength="14" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="razao" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nome_fantasia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="logradouro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cidade" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="uf" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numero" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cep" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="complemento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="site" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cotacao" Relationship="Self.FK_Transportadora_Cotacao" FromRole="transportadora" ToRole="cotacao" />
+  </EntityType>
+  <Association Name="FK_Cotacao_Frete">
+    <End Role="cotacao" Type="Self.cotacao" Multiplicity="1" />
+    <End Role="frete" Type="Self.frete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cotacao">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="frete">
+        <PropertyRef Name="fkcotacao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cotacao">
+    <End Role="pedido" Type="Self.pedido" Multiplicity="1" />
+    <End Role="cotacao" Type="Self.cotacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pedido">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="cotacao">
+        <PropertyRef Name="fkpedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transportadora_Cotacao">
+    <End Role="transportadora" Type="Self.transportadora" Multiplicity="1" />
+    <End Role="cotacao" Type="Self.cotacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transportadora">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="cotacao">
+        <PropertyRef Name="fktransportadora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Embalagem_Pedido">
+    <End Role="embalagem" Type="Self.embalagem" Multiplicity="1" />
+    <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="embalagem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="pedido">
+        <PropertyRef Name="fkempresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empresa_Pedido">
+    <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+    <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="pedido">
+        <PropertyRef Name="fkempresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DadosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cotacao" EntityType="Self.cotacao" />
+    <EntitySet Name="embalagem" EntityType="Self.embalagem" />
+    <EntitySet Name="empresa" EntityType="Self.empresa" />
+    <EntitySet Name="frete" EntityType="Self.frete" />
+    <EntitySet Name="pedido" EntityType="Self.pedido" />
+    <EntitySet Name="transportadora" EntityType="Self.transportadora" />
+    <AssociationSet Name="FK_Cotacao_Frete" Association="Self.FK_Cotacao_Frete">
+      <End Role="cotacao" EntitySet="cotacao" />
+      <End Role="frete" EntitySet="frete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Cotacao" Association="Self.FK_Pedido_Cotacao">
+      <End Role="pedido" EntitySet="pedido" />
+      <End Role="cotacao" EntitySet="cotacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transportadora_Cotacao" Association="Self.FK_Transportadora_Cotacao">
+      <End Role="transportadora" EntitySet="transportadora" />
+      <End Role="cotacao" EntitySet="cotacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Embalagem_Pedido" Association="Self.FK_Embalagem_Pedido">
+      <End Role="embalagem" EntitySet="embalagem" />
+      <End Role="pedido" EntitySet="pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empresa_Pedido" Association="Self.FK_Empresa_Pedido">
+      <End Role="empresa" EntitySet="empresa" />
+      <End Role="pedido" EntitySet="pedido" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

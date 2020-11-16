@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DadosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="cotacao">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fkpedido" Type="int" Nullable="false" />
+    <Property Name="fktransportadora" Type="int" Nullable="false" />
+    <Property Name="dias_entrega" Type="int" Nullable="false" />
+    <Property Name="valor" Type="varchar" MaxLength="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="embalagem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descricao" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="altura" Type="varchar" MaxLength="7" Nullable="false" />
+    <Property Name="largura" Type="varchar" MaxLength="7" Nullable="false" />
+    <Property Name="comprimento" Type="varchar" MaxLength="7" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empresa">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cnpj" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="razao" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nome_fantasia" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="logradouro" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cidade" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="uf" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="numero" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="cep" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="complemento" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefone" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="frete">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fkcotacao" Type="int" Nullable="false" />
+    <Property Name="codigo_rastreio" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="data_postagem" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="pedido">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nome_cliente" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cpf_cnpj" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="logradouro" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cidade" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="uf" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="numero" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="cep" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="complemento" Type="varchar" MaxLength="50" />
+    <Property Name="peso" Type="varchar" MaxLength="7" Nullable="false" />
+    <Property Name="valor" Type="varchar" MaxLength="7" Nullable="false" />
+    <Property Name="fkembalagem" Type="int" Nullable="false" />
+    <Property Name="fkempresa" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="transportadora">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cnpj" Type="varchar" MaxLength="14" Nullable="false" />
+    <Property Name="razao" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nome_fantasia" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="logradouro" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cidade" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="uf" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="numero" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="cep" Type="varchar" MaxLength="8" Nullable="false" />
+    <Property Name="complemento" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="telefone" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="site" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Cotacao_Frete">
+    <End Role="cotacao" Type="Self.cotacao" Multiplicity="1" />
+    <End Role="frete" Type="Self.frete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cotacao">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="frete">
+        <PropertyRef Name="fkcotacao" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Embalagem_Pedido">
+    <End Role="embalagem" Type="Self.embalagem" Multiplicity="1" />
+    <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="embalagem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="pedido">
+        <PropertyRef Name="fkempresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Empresa_Pedido">
+    <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+    <End Role="pedido" Type="Self.pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="pedido">
+        <PropertyRef Name="fkempresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cotacao">
+    <End Role="pedido" Type="Self.pedido" Multiplicity="1" />
+    <End Role="cotacao" Type="Self.cotacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pedido">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="cotacao">
+        <PropertyRef Name="fkpedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transportadora_Cotacao">
+    <End Role="transportadora" Type="Self.transportadora" Multiplicity="1" />
+    <End Role="cotacao" Type="Self.cotacao" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="transportadora">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="cotacao">
+        <PropertyRef Name="fktransportadora" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DadosModelStoreContainer">
+    <EntitySet Name="cotacao" EntityType="Self.cotacao" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="embalagem" EntityType="Self.embalagem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empresa" EntityType="Self.empresa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="frete" EntityType="Self.frete" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pedido" EntityType="Self.pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transportadora" EntityType="Self.transportadora" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Cotacao_Frete" Association="Self.FK_Cotacao_Frete">
+      <End Role="cotacao" EntitySet="cotacao" />
+      <End Role="frete" EntitySet="frete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Embalagem_Pedido" Association="Self.FK_Embalagem_Pedido">
+      <End Role="embalagem" EntitySet="embalagem" />
+      <End Role="pedido" EntitySet="pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Empresa_Pedido" Association="Self.FK_Empresa_Pedido">
+      <End Role="empresa" EntitySet="empresa" />
+      <End Role="pedido" EntitySet="pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Cotacao" Association="Self.FK_Pedido_Cotacao">
+      <End Role="pedido" EntitySet="pedido" />
+      <End Role="cotacao" EntitySet="cotacao" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transportadora_Cotacao" Association="Self.FK_Transportadora_Cotacao">
+      <End Role="transportadora" EntitySet="transportadora" />
+      <End Role="cotacao" EntitySet="cotacao" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

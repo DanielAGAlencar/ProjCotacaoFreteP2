@@ -1,0 +1,122 @@
+﻿@model ProjCotacaoFreteP2.pedido
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>pedido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nome_cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nome_cliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cpf_cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cpf_cnpj)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.logradouro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.logradouro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cidade)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.uf)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.uf)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.cep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.cep)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.complemento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.complemento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.peso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.peso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fkembalagem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fkembalagem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.embalagem.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.embalagem.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.empresa.cnpj)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.empresa.cnpj)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
